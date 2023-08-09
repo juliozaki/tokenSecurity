@@ -1,6 +1,7 @@
 package com.Security.SessionSecurity.Util;
 
 
+import lombok.AllArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "jks")
