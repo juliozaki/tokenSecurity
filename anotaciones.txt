@@ -1,0 +1,12 @@
+Para firmar nuestro token JWT usaremos el algoritmo RSA. RSA es un algoritmo de encriptación asimétrica, lo que significa que funciona utilizando dos claves diferentes, una pública y otra privada. La clave privada nos servirá para firmar el token y la clave pública para verificar el token.
+
+Haremos uso de la herramienta Keytool para generar el Key Store (archivo jks) que almacenerá las claves generadas.
+
+keytool -genkeypair -alias juliozaki -keyalg RSA -keystore jcpks.jks -keysize 2048
+
+-genkeypair: indica que se genere un par de claves.
+-alias: nombre de la entrada generada en el Key Store. Es el identificador de nuestro par de claves.
+-keyalg: nombre del algoritmo utilizado.
+-keystore: nombre del archivo generado. En nuestro caso será jcpks.jks.
+-keysize: tamaño de la clave en bits. Usaremos 2048 en este ejemplo pero se recomienda 4096 para mayor seguridad.
+Una vez generado el archivo jcpks.jks, lo moveremos al CLASSPATH de nuestro proyecto, preferentemente dentro de la carpeta /resources.
