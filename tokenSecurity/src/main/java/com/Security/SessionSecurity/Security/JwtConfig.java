@@ -27,7 +27,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 public class JwtConfig {
 
     private static final Logger log = LoggerFactory.getLogger(JwtConfig.class);
-    private JksProperties jksProperties;
+    private final JksProperties jksProperties;
 
     public JwtConfig(JksProperties jksProperties) {
         this.jksProperties = jksProperties;
