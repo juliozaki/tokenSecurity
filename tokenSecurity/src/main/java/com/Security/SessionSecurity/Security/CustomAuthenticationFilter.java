@@ -1,43 +1,48 @@
 package com.Security.SessionSecurity.Security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.Security.SessionSecurity.Util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.io.IOException;
+import java.util.Collections;
+public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
-@Component
-public class CustomAuthenticationFilter extends OncePerRequestFilter {
+    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest,
+                                                HttpServletResponse httpServletResponse) throws AuthenticationException{
 
-    private final JwtUtil jwtUtil;
-    public CustomAuthenticationFilter(JwtUtil jwtUtil){
-        this.jwtUtil = jwtUtil;
+        AuthCredentials authCredentials = new AuthCredentials();
+        try {
+            authCredentials = new ObjectMapper().readValue(httpServletRequest.getReader(), AuthCredentials.class);
+        }catch (IOException e){
+            authCredentials.setUsername("");
+            authCredentials.setPassword("");
+        }
+
+        UsernamePasswordAuthenticationToken usernamePat = new UsernamePasswordAuthenticationToken(
+                authCredentials.getUsername(),
+                authCredentials.getPassword(),
+                Collections.emptyList()
+        );
+        return getAuthenticationManager().authenticate(usernamePat);
     }
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest httpRequest,
-                                    HttpServletResponse httpResponse,
-                                    FilterChain filterChain) throws ServletException, IOException {
+    protected void successfulAuthentication(HttpServletRequest httpServletRequest,
+                                            HttpServletResponse httpServletResponse,
+                                            FilterChain filterChain,
+                                            Authentication authentication) throws IOException, ServletException {
 
-        Authentication auth = SecurityContextHolder
-                .getContext()
-                .getAuthentication();
-        if(auth != null){
-            UserDetails userDetail = (UserDetails) auth.getPrincipal();
-            if(userDetail != null){
-                String token = this.jwtUtil.encode(userDetail.getUsername());
-                httpResponse.addHeader("Authorization", token);
-                httpResponse.getWriter().flush();
-            }
-
-        }
-        System.out.println("JULIOZAKI");
-        filterChain.doFilter(httpRequest, httpResponse);
+        JwtUtil jwtUtil = new JwtUtil();
+        UserDetailsModel userDetails = (UserDetailsModel) authentication.getPrincipal();
+        String token = jwtUtil.create(userDetails.getUsername(),userDetails.getFirstName());
+        httpServletResponse.addHeader("Authorization", "Bearer " + token);
+        httpServletResponse.getWriter().flush();
     }
 }
