@@ -13,4 +13,9 @@ public class UserController {
     public String getUsers() {
         return "All users here";
     }
+
+    @RequestMapping(value = "getUsers2", method = RequestMethod.GET)
+    public String getUsers2() {
+        return "All users here dos dos";
+    }
 }
