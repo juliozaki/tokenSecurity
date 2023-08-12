@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @RequestMapping(value = "getUsers", method = RequestMethod.GET)
-    public String login() {
+    public String getUsers() {
         return "All users here";
     }
 }

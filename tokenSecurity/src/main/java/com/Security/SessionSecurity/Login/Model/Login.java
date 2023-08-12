@@ -19,7 +19,6 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Login {
-
     @Id
     @Column(name = "email", length = 100, unique = true)
     @Email
@@ -33,5 +32,4 @@ public class Login {
     @Column(name = "password", length = 300)
     @NotNull
     private String password;
-    private String role;
 }

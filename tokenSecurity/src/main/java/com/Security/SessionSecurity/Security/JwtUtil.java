@@ -11,8 +11,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 @Component
 public class JwtUtil {
-    private RSAPrivateKey privateKey;
-    private RSAPublicKey publicKey;
+    private final RSAPrivateKey privateKey;
+    private final RSAPublicKey publicKey;
 
     public JwtUtil(RSAPublicKey publicKey, RSAPrivateKey privateKey) {
         this.privateKey = privateKey;
