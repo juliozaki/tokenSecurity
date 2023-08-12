@@ -9,5 +9,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TokenDto {
     private String token;
-    private String error;
+    private int responseCode;
+    private String mensaje;
 }

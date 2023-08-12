@@ -1,4 +1,4 @@
-package com.Security.SessionSecurity.Security;
+package com.Security.SessionSecurity.Security.Model;
 
 import com.Security.SessionSecurity.Login.Model.Login;
 import lombok.AllArgsConstructor;

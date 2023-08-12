@@ -2,7 +2,7 @@ package com.Security.SessionSecurity.Login.Service;
 
 import com.Security.SessionSecurity.Login.Model.Login;
 import com.Security.SessionSecurity.Login.Repository.LoginRepository;
-import com.Security.SessionSecurity.Security.UserDetailsModel;
+import com.Security.SessionSecurity.Security.Model.UserDetailsModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
