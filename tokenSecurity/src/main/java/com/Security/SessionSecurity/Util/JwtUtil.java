@@ -49,7 +49,6 @@ public class JwtUtil {
                     .parseClaimsJws(token)
                     .getBody();
             String user = claims.getId();
-
             return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
         }catch (JwtException e){
             return null;
