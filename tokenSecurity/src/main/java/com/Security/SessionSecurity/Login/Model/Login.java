@@ -6,18 +6,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.apache.catalina.valves.rewrite.InternalRewriteMap;
 
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Data
 public class Login {
     @Id
     @Column(name = "email", length = 100, unique = true)
