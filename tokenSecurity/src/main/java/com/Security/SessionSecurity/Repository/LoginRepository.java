@@ -1,6 +1,6 @@
-package com.Security.SessionSecurity.Login.Repository;
+package com.Security.SessionSecurity.Repository;
 
-import com.Security.SessionSecurity.Login.Model.Login;
+import com.Security.SessionSecurity.Model.Login;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.Security.SessionSecurity.Login.Model;
+package com.Security.SessionSecurity.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,13 +6,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
-import org.apache.catalina.valves.rewrite.InternalRewriteMap;
+import lombok.Builder;
+import lombok.Data;
 
 
 @Entity
 @Table(name = "users")
 @Data
+@Builder
 public class Login {
     @Id
     @Column(name = "email", length = 100, unique = true)

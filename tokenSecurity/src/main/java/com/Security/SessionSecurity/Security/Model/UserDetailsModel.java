@@ -1,6 +1,6 @@
 package com.Security.SessionSecurity.Security.Model;
 
-import com.Security.SessionSecurity.Login.Model.Login;
+import com.Security.SessionSecurity.Model.Login;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
